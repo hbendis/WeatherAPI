@@ -1,11 +1,10 @@
-/*SEARCH BY USING A CITY NAME (e.g. athens) OR A COMMA-SEPARATED CITY NAME ALONG WITH THE COUNTRY CODE (e.g. athens,gr)*/
 const form = document.querySelector(".top-banner form");
 const input = document.querySelector(".top-banner input");
 const msg = document.querySelector(".top-banner .msg");
 const list = document.querySelector(".ajax-section .cities");
 /*PUT YOUR OWN KEY HERE - THIS MIGHT NOT WORK
 SUBSCRIBE HERE: https://home.openweathermap.org/users/sign_up*/
-const apiKey = "4d8fb5b93d4af21d66a2948710284366";
+const apiKey = "3df89ed7155d49346c81cbf938b24f41";
 
 form.addEventListener("submit", e => {
   e.preventDefault();
@@ -18,9 +17,7 @@ form.addEventListener("submit", e => {
   if (listItemsArray.length > 0) {
     const filteredArray = listItemsArray.filter(el => {
       let content = "";
-      //athens,gr
       if (inputVal.includes(",")) {
-        //athens,grrrrrr->invalid country code, so we keep only the first part of inputVal
         if (inputVal.split(",")[1].length > 2) {
           inputVal = inputVal.split(",")[0];
           content = el
@@ -30,7 +27,6 @@ form.addEventListener("submit", e => {
           content = el.querySelector(".city-name").dataset.name.toLowerCase();
         }
       } else {
-        //athens
         content = el.querySelector(".city-name span").textContent.toLowerCase();
       }
       return content == inputVal.toLowerCase();
@@ -52,7 +48,12 @@ form.addEventListener("submit", e => {
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      const { main, name, sys, weather } = data;
+      const {
+        main,
+        name,
+        sys,
+        weather
+      } = data;
       const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
         weather[0]["icon"]
       }.svg`;
