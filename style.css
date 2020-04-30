@@ -48,7 +48,7 @@ ul {
 
 body {
   font: 1rem/1.3 "Roboto", sans-serif;
-  background-image: url("/img/rain-3443977_1920.jpg");
+  background-image: url("../img/rain-3443977_1920.jpg");
   color: var(--text_dark);
   padding: 50px;
 }
